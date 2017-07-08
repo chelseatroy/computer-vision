@@ -1,0 +1,66 @@
+For compiling the c++ code with OpenCV library, you can use either of the following methods. 
+
+We suggest you to use the second option.
+
+1. 	Using gcc or g++ from the command line
+
+	Replace filename.cpp with the cpp code and output by any name you want.
+
+	### For Compilation and generating the executables ###
+
+	MACOS
+	g++ -std=c++11 <filename.cpp> `pkg-config --libs --cflags /usr/local/opt/opencv3/lib/pkgconfig/opencv.pc` -o <output>
+
+
+	UBUNTU
+	g++ -std=c++11 <filename.cpp> `pkg-config --libs --cflags opencv` -o <output>
+	
+
+	### For running the program ###
+	./name_of_the_executable any_additional_arguments_it_takes
+
+
+2. 	Use CMake
+
+	For Both MacOs and Linux
+	
+	### For Compilation and generating the executables ###
+
+	From the command line where the CMakeLists.txt file is present, execute the following commands
+
+	cmake .
+	make
+
+
+	### For running the program ###
+	./name_of_the_executable any_additional_arguments_it_takes
+	
+	If you get errors while using cmake .
+	Do the following on the command line
+	find /usr/local/ -name "OpenCVConfig.cmake"
+	and then 
+	SET(OpenCV_DIR=/output/of/above) in the CMakeLists.txt 
+
+	For Windows
+
+	# MAKE SURE You have Path and OPENCV_DIR environment variables updated.
+	# OpenCV_DIR set to the PATH_TO_YOUR_OPENCV_FOLDER\opencv-3.2.0\build\install
+
+	# Check Step 7.1 and 7.2 in Module0.3.1-WindowsCMD.pdf or Module0.3.2-WindowsGUI.pdf
+	
+	### For Compilation and generating the executables ###
+	
+	mkdir build
+	cd build
+	# Also ENSURE that the visual studio versions ( 14 / 15 and 2015 / 2017 ) are correct for you system
+	cmake -G "Visual Studio 14 2015 Win64" ..
+	cmake --build . --config Release
+	
+
+	### For running the program ###
+	
+	# come back to week1\cpp directory
+	cd ..
+	.\build\Release\name_of_the_cpp_file.exe
+
+
